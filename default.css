@@ -1,3 +1,21 @@
+@font-face {
+    font-family: 'OPTIFrankfurter';
+    src: url('https://f9.limitedrun.com/fonts/970/OPTIFrankfurter-Medium.woff2') format('woff2'),
+        url('https://f9.limitedrun.com/fonts/969/OPTIFrankfurter-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lightzone';
+    src: url('https://f9.limitedrun.com/fonts/977/Lightzone.woff2') format('woff2'),
+        url('https://f9.limitedrun.com/fonts/976/Lightzone.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /*CSS RESET*/
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}*{box-sizing:border-box}
 /***********/
@@ -8,6 +26,7 @@ html, body {
 
 body {
     overflow-x: hidden;
+    position: relative;
 }
 
 a {
@@ -17,4 +36,116 @@ a {
 
 img {
     max-width: 100%;
+}
+
+/**************/
+
+body::after, section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+body::after {
+    background: url(./img/dottex.jpg);
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+}
+
+section::after {
+    height: 100vh;
+    background: #FE8;
+    opacity: 0.2;
+    mix-blend-mode: unset;
+}
+
+section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#home {
+    background-image: url(./img/coverexpanded.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.links {
+    margin-top: auto;
+    margin-bottom: 10vh;
+}  
+
+.links a {
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
+    font-family: OPTIFrankfurter;
+    color: #3a3a3a;
+    text-transform: uppercase;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: calc(0.75em + 1vw);
+    background: #f7df48;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    margin: 0.25em;
+    letter-spacing: 2px;
+}
+
+.links .lowerlinks a {
+    font-size: calc(0.75em + 0.5vw);
+    background: #db5342;
+    color: #f7f1dd;
+}
+
+
+#tracklist {
+    background: url(./img/clouds.jpg);
+    background-size: cover;
+    background-position: bottom;
+}
+
+#tracklist::before {
+    content: "";
+    position: absolute;
+    top: -5vh;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(152, 187, 193) 40%, rgb(170, 201, 206) 60%, rgba(255,255,255,0) 100%);
+    z-index: 2;
+}
+
+h1 {
+    font-family: OPTIFrankfurter;
+    text-transform: uppercase;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
+    font-size: calc(2em + 1vw);
+    color: #b7d0ce;
+}
+
+#tracklist > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    margin-top: 1em;
+}
+
+#tracklist > div > span:not(span:last-child) {
+    margin-bottom: 1em;
+}
+
+#map {
+    background: url(./img/papertex.jpg);
 }
