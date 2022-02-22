@@ -40,7 +40,12 @@ img {
 
 /**************/
 
-body::after, section::after {
+body {
+    color: #3a3a3a;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+body::after, body::before {
     content: "";
     position: absolute;
     top: 0;
@@ -48,20 +53,28 @@ body::after, section::after {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    font-family: 'Didact Gothic', sans-serif;
 }
 
 body::after {
     background: url(./img/dottex.jpg);
     mix-blend-mode: overlay;
     opacity: 0.4;
+    z-index: 9;
 }
 
-section::after {
-    height: 100vh;
+body::before {
+    position: fixed;
+    height: 105vh;
     background: #FE8;
     opacity: 0.2;
     mix-blend-mode: unset;
+    z-index: 10;
+}
+
+h1, h2, h3, .milestone-title, .links a, #tracklist > div {
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
+    font-family: OPTIFrankfurter;    
+    text-transform: uppercase;
 }
 
 section {
@@ -73,6 +86,7 @@ section {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 0 5vw;
 }
 
 #home {
@@ -81,16 +95,16 @@ section {
     background-position: center;
 }
 
+#home img {
+    margin-top: 5vh;
+}
+
 .links {
     margin-top: auto;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
 }  
 
 .links a {
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
-    font-family: OPTIFrankfurter;
-    color: #3a3a3a;
-    text-transform: uppercase;
     padding: 10px;
     display: inline-block;
     border-radius: 10px;
@@ -103,15 +117,63 @@ section {
 
 .links .lowerlinks a {
     font-size: calc(0.75em + 0.5vw);
+    width: 16em;
     background: #db5342;
     color: #f7f1dd;
 }
 
+@media only screen and (max-width: 600px){ 
+    .links {
+        margin-bottom: 4vh;
+    }
 
+    .links a {
+        font-size: 5vw;
+        color: #ebefde;
+        flex-grow: 1;
+    }
+
+    .lowerlinks, .upperlinks {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .links .lowerlinks a {
+        font-size: 3vw;
+        flex-grow: 1;
+        flex-basis: 40%;
+    }
+
+    .lowerlinks > a:nth-child(1) {
+        width: 100%;
+        flex-basis: 100%;
+    }
+}
+  
 #tracklist {
     background: url(./img/clouds.jpg);
     background-size: cover;
     background-position: bottom;
+    padding: 10vh 0;
+    z-index: 2;
+}
+
+#tracklist::after {
+    content: "";
+    background: inherit;
+    background-position: top;
+    width: 200%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    animation: CLOUDDRIFT 60s cubic-bezier(.14,0,.86,.99) infinite alternate;
+}
+
+@keyframes CLOUDDRIFT {
+    0% { transform: translateX(0) }
+    100% { transform: translateX(-50%)}
 }
 
 #tracklist::before {
@@ -120,17 +182,18 @@ section {
     top: -5vh;
     left: 0;
     width: 100%;
-    height: 10vh;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(152, 187, 193) 40%, rgb(170, 201, 206) 60%, rgba(255,255,255,0) 100%);
+    height: calc(100% + 5vh);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(155, 199, 206) 5%, rgba(177, 208, 213, 0) 7%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 99%, #d5d5d5 100%);
     z-index: 2;
+    pointer-events: none;
 }
 
-h1 {
-    font-family: OPTIFrankfurter;
-    text-transform: uppercase;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
-    font-size: calc(2em + 1vw);
+#tracklist h1 {
     color: #b7d0ce;
+}
+
+h1, #tracklist > div {
+    font-size: calc(2em + 1vw);
 }
 
 #tracklist > div {
@@ -140,6 +203,13 @@ h1 {
     align-content: center;
     text-align: center;
     margin-top: 1em;
+    font-size: calc(1em + 0.5vw);
+    text-shadow: unset;
+}
+  
+#tracklist > div:last-child {
+  font-size: 1em;
+  margin-top: 2em;
 }
 
 #tracklist > div > span:not(span:last-child) {
@@ -148,4 +218,140 @@ h1 {
 
 #map {
     background: url(./img/papertex.jpg);
+    min-height: 50vh;
+    justify-content: flex-start;
+    padding: 5vh 0;
 }
+  
+.roadmap {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 1300px;
+    max-width: 100%;
+    margin: 5vh auto;
+}
+
+.milestone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    min-height: 150px;
+    background: #e7dfc6;
+    border: 2px dashed black;
+    border-radius: 15px;
+    padding: 1em 10px;
+    margin-right: auto;
+    padding-right: 50px;
+    text-align: right;
+}
+
+.milestone-title {
+    font-size: calc(1em + 1vw);
+    letter-spacing: 0.15em;
+    width: 100%;
+    display: block;
+    text-transform: uppercase;
+}
+
+.milestone-body {
+    margin-top: 1em;
+}
+
+.milestone::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(75%, 75%);
+    background-image: url('./img/placeholdermap.png');
+    background-size: 100% 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.milestone:nth-child(2n+2) {
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 10px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.milestone:nth-child(2n+2)::after {
+    right: unset;
+    left: 0;
+    transform: translate(-75%, 75%) rotateY(180deg);
+    background-image: url('./img/placeholdermap2.png');
+}
+
+.milestone:not(.milestone:first-child) {
+    margin-top: 2em;
+}
+
+.milestone:last-child::after {
+    opacity: 0;
+}
+
+.milestone::before {
+    content: "??";
+    font-family: OPTIFrankfurter;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    font-size: 3em;
+    background: inherit;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    overflow: hidden;
+    letter-spacing: 0;
+    border: 2px dotted;
+}
+
+.milestone:nth-child(2n+2)::before {
+    right: unset;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+
+footer {
+    font-size: calc(1.5em);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 14vh;
+    background: url(./img/bgnoboat.jpg);
+    background-position: bottom;
+}
+
+footer > * {
+    padding: 1vh 0;
+}
+
+footer > a {
+    margin-top: 0.25em;
+    font-family: OPTIFrankfurter;
+}
+
+.socials a {
+    padding: 0 0.25em;
+}
+  
