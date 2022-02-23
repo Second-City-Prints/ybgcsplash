@@ -255,6 +255,10 @@ section {
     text-align: right;
 }
 
+.milestone > *:empty {
+    display: none;
+}
+
 .milestone-title {
     font-size: calc(1em + 1vw);
     letter-spacing: 0.15em;
