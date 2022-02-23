@@ -273,6 +273,18 @@ section {
     margin-top: 1em;
 }
 
+.milestone:nth-child(3n+1) .milestone-title {
+    color: #ee2625;
+}
+
+.milestone:nth-child(3n+2) .milestone-title {
+    color: #faa21c;
+}
+
+.milestone:nth-child(3n+3) .milestone-title {
+    color: #739eab;
+}
+
 .milestone::after {
     content: "";
     width: 100%;
