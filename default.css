@@ -71,7 +71,7 @@ body::before {
     z-index: 10;
 }
 
-h1, h2, h3, .milestone-title, .links a, #tracklist > div {
+h1, h2, h3, .milestone-title, .links a, #tracklist > div, .mbutton {
     text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
     font-family: OPTIFrankfurter;    
     text-transform: uppercase;
@@ -104,7 +104,7 @@ section {
     margin-bottom: 5vh;
 }  
 
-.links a {
+.links a, .mbutton {
     padding: 10px;
     display: inline-block;
     border-radius: 10px;
@@ -115,7 +115,7 @@ section {
     letter-spacing: 2px;
 }
 
-.links .lowerlinks a {
+.links .lowerlinks a, .mbutton {
     font-size: calc(0.75em + 0.5vw);
     width: 16em;
     background: #db5342;
@@ -188,11 +188,12 @@ section {
     pointer-events: none;
 }
 
-#tracklist h1 {
+#tracklist h2 {
     color: #b7d0ce;
+    margin: 0.5em auto;
 }
 
-h1, #tracklist > div {
+#tracklist h2, #tracklist > div {
     font-size: calc(2em + 1vw);
 }
 
@@ -262,6 +263,12 @@ h1, #tracklist > div {
     text-transform: uppercase;
 }
 
+.milestone-subtitle {
+    width: 100%;
+    margin-top: 0.5em;
+    font-style: italic;
+}
+
 .milestone-body {
     margin-top: 1em;
 }
@@ -304,21 +311,22 @@ h1, #tracklist > div {
     opacity: 0;
 }
 
-.milestone::before {
-    content: "??";
+.milestone.covered::before, .milestone.final::before {
+    content: "02:52:66";
     font-family: OPTIFrankfurter;
     position: absolute;
     top: 0;
     right: 0;
     transform: translate(50%, -50%);
-    font-size: 3em;
+    font-size: 1em;
     background: inherit;
-    width: 1.5em;
+    width: auto;
     height: 1.5em;
+    padding: 0.25em;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 100%;
+    border-radius: 50px;
     overflow: hidden;
     letter-spacing: 0;
     border: 2px dotted;
@@ -330,6 +338,44 @@ h1, #tracklist > div {
     transform: translate(-50%, -50%);
 }
 
+.mbutton {
+    width: auto;
+}
+
+.milestone.final {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.milestone.final::before {
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    width: 6em;
+    margin: auto;
+    font-size: 1.5em;
+}
+
+.milestone.final {
+    padding: 2.5em 10px 1em;
+    max-width: 800px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .milestone::before, .milestone:nth-child(2n+2)::before {
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 6em;
+    }
+
+    .milestone, .milestone:nth-child(2n+2), .milestone.final {
+        text-align: center;
+        padding: 2.5em 10px 1em;
+    }
+}
 
 footer {
     font-size: calc(1.5em);
