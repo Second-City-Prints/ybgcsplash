@@ -311,7 +311,7 @@ section {
     opacity: 0;
 }
 
-.milestone.covered::before, .milestone.final::before {
+.milestone[reveal]::before, .milestone.final::before {
     content: "02:52:66";
     font-family: OPTIFrankfurter;
     position: absolute;
@@ -361,6 +361,15 @@ section {
     padding: 2.5em 10px 1em;
     max-width: 800px;
 }
+
+.milestone.covered {
+    padding: 0;
+}
+
+.milestone.covered .milestone-title {
+    text-align: center;
+}
+  
 
 @media only screen and (max-width: 1000px) {
     .milestone::before, .milestone:nth-child(2n+2)::before {
