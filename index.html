@@ -25,60 +25,35 @@
 </head>
 
 <body>	
+  <section id="map">
+    <img src="./img/placeholdogo.png" alt="Groove Continental">
+    <h2>Side A</h2>
+    <div class="roadmap">
+      <div class="milestone final" epoch="1645926507000" reveal="">
+        <span class="milestone-title">Album Release</span>
+        <span class="milestone-content"><a href="" target="_blank" class="listen mbutton">Presave</a></span>
+      </div>
+    </div>
+  </section>
+
   <section id="home">
     <img src="./img/placeholdogo.png" alt="Groove Continental">
     <div class="links">
       <div class="upperlinks">
-        <a href="" target="_blank">Presave</a>
-        <a href="#tracklist">Tracklist</a>
+        <a href="" target="_blank" class="listen">Presave</a>
+        <a href="#tracklist" class="tracklist-button">Tracklist</a>
       </div>
       <div class="lowerlinks">
         <a href="" target="_blank">The Radio Show</a>
         <a href="" target="_blank">Buy the Merch</a>
-        <a href="" target="_blank">Playlist</a>
+        <a href="" target="_blank">The Playlist</a>
       </div>
     </div>
   </section>
 
   <section id="tracklist">
-    <img src="./img/placeholdogo.png" alt="Groove Continental">
-    <h2>Side A</h2>
-    <div>
-      <span>Trackname</span>
-      <span>Trackname</span>
-      <span>Trackname</span>
-      <span>Trackname</span>
-      <span>Trackname</span>
-      <span>Trackname</span>
-      <span>Trackname</span>
-      <span>Trackname</span>
-    </div>
-  </section>
-
-  <section id="map">
-    <div class="roadmap">
-      <div class="milestone">
-        <span class="milestone-title">Lorem ipsum</span>
-        <span class="milestone-subtitle">Praesent eu mi</span>
-        <div class="milestone-body">
-          dolor sit amet, consectetur adipiscing elit. Praesent eu mi libero. In hac habitasse platea dictumst. Sed in justo purus. In tristique at elit at feugiat. 
-        </div>
-      </div>
-      <div class="milestone covered" reveal="02:55:66">
-        <span class="milestone-title">Coming Soon</span>
-      </div>
-      <div class="milestone covered">
-        <span class="milestone-title">???</span>
-      </div>
-      <div class="milestone covered">
-        <span class="milestone-title">???</span>
-      </div>
-      <div class="milestone final" reveal="02:55:66">
-        <span class="milestone-title">Album Release</span>
-        <span class="milestone-subtitle"></span>
-        <div class="milestone-body"></div>
-      </div>
-    </div>
+    <h2>TRACKLIST</h2>
+    <div></div>
   </section>
 
   <footer>
@@ -94,9 +69,110 @@
   </footer>
 
   <script>
-    fetch('https://yungbaesplash.ksws.workers.dev/').then(res=> res.json().then(data => {
-      console.log(data)
-    }))
+    var intervals = []
+    function initialize(){
+      console.log('init')
+
+      //reinitialize
+      document.querySelectorAll('.milestone:not(.final)').forEach(e=> e.remove())
+      document.querySelector('#tracklist div').innerHTML = ""
+      intervals.forEach(interval => {
+        clearInterval(interval)
+      })
+      intervals = []
+
+      //get content
+      fetch('https://yungbaesplash.ksws.workers.dev/').then(res=> res.json().then(data => {
+        console.log(data)
+
+        //insert all milestones
+        var milestoneHTML = ""
+        data.milestones.forEach(milestone => {
+          if(milestone.revealTime) {
+            //
+            if(milestone.content) { //revealed
+              milestoneHTML += `
+                <div class="milestone">
+                  <span class="milestone-title">${milestone.title}</span>
+                  <span class="milestone-subtitle">${milestone.subtitle}</span>
+                  <div class="milestone-body">${milestone.content}</div>
+                </div>
+              `            
+            } else { //unrevealed but has timer
+              milestoneHTML += `
+                <div class="milestone covered" epoch="${milestone.revealTime}" reveal="">
+                  <span class="milestone-title">COMING SOON</span>
+                </div>
+              `            
+            }
+            //
+          } else { //empty
+              milestoneHTML += `
+                <div class="milestone covered">
+                  <span class="milestone-title">???</span>
+                </div>
+              `
+          }
+        })
+        document.querySelector('.roadmap').insertAdjacentHTML('afterbegin', milestoneHTML)
+
+        //insert tracklist, if there is any visible yet
+        if(data.tracklist) {
+          let tracklist = data.tracklist.split('\n')
+          tracklist.forEach(track => {
+            document.querySelector('#tracklist div').insertAdjacentHTML('afterbegin', `<span>${track}</span>`)
+          })
+          document.querySelector('#tracklist').style.display = 'flex'
+          document.querySelector('.tracklist-button').style.display = 'inline-block'
+        } else {
+          document.querySelector('#tracklist').style.display = 'none'
+          document.querySelector('.tracklist-button').style.display = 'none'
+        }
+
+        //add listen or presave buttons depending on whether the album's out or if presave is available      
+        document.querySelectorAll('.listen').forEach(e=>{
+          if(data.listen) {
+            e.href = data.listen
+            e.innerHTML = "LISTEN"
+            e.style.display = 'inline-block'
+          } else if(data.presave) {
+            e.href = data.presave
+            e.style.display = 'inline-block'
+          } else {
+            e.style.display = 'none'
+          }
+        })
+
+        //set up timers for milestones
+        document.querySelectorAll('.milestone[epoch]').forEach(e=>{
+          if(Date.now() < Number(e.getAttribute('epoch'))) {
+            function SCP_timer() {
+                let endtime = new Date(Number(e.getAttribute('epoch')))
+                let now = Date.now()
+
+                let diff = endtime - now;
+                if(diff <= 0) SCP_timerEnd()
+
+                let days = Math.floor(diff / (1000*60*60*24))
+                let hours = Math.floor(diff % (1000*60*60*24) / (1000*60*60))
+                let minutes = Math.floor(diff % (1000*60*60)/ (1000*60))
+                let seconds = Math.floor(diff % (1000*60) / 1000) 
+
+                e.setAttribute('reveal', `${String(days).padStart(2,'0')}:${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`)
+            }
+
+            function SCP_timerEnd() {
+                initialize()
+            }
+
+            SCP_timer()
+            intervals.push(setInterval(SCP_timer,1000))
+          }
+        })
+      }))
+    }
+  
+    initialize()
   </script>
 </body>
 </html>

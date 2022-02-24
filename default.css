@@ -188,12 +188,12 @@ section {
     pointer-events: none;
 }
 
-#tracklist h2 {
-    color: #b7d0ce;
+#map h2, #tracklist h2 {
+    color: #e64836;
     margin: 0.5em auto;
 }
 
-#tracklist h2, #tracklist > div {
+#map h2, #tracklist h2, #tracklist > div {
     font-size: calc(2em + 1vw);
 }
 
@@ -219,7 +219,6 @@ section {
 
 #map {
     background: url(./img/papertex.jpg);
-    min-height: 50vh;
     justify-content: flex-start;
     padding: 5vh 0;
 }
@@ -273,7 +272,7 @@ section {
     font-style: italic;
 }
 
-.milestone-body {
+.milestone-content {
     margin-top: 1em;
 }
 
@@ -327,8 +326,8 @@ section {
     opacity: 0;
 }
 
-.milestone[reveal]::before, .milestone.final::before {
-    content: "02:52:66";
+.milestone[reveal]::before {
+    content: attr(reveal);
     font-family: OPTIFrankfurter;
     position: absolute;
     top: 0;
@@ -368,7 +367,7 @@ section {
     transform: translateY(-50%);
     left: 0;
     right: 0;
-    width: 6em;
+    width: 8em;
     margin: auto;
     font-size: 1.5em;
 }
@@ -393,7 +392,7 @@ section {
         left: 0;
         right: 0;
         margin: auto;
-        width: 6em;
+        width: 8em;
     }
 
     .milestone, .milestone:nth-child(2n+2), .milestone.final {
