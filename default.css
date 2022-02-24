@@ -361,6 +361,8 @@ section {
     width: 100%;
     margin: auto;
     text-align: center;
+    padding: 2.5em 10px 1em;
+    max-width: 800px;
 }
 
 .milestone.final::before {
@@ -372,10 +374,10 @@ section {
     font-size: 1.5em;
 }
 
-.milestone.final {
-    padding: 2.5em 10px 1em;
-    max-width: 800px;
+.milestone.final[reveal=""]::before {
+    display: none;
 }
+  
 
 .milestone.covered {
     padding: 0;
