@@ -277,7 +277,7 @@ section {
     font-style: italic;
 }
 
-.milestone-content {
+.milestone-body {
     margin-top: 1em;
 }
 
@@ -394,16 +394,24 @@ section {
   
 
 @media only screen and (max-width: 1000px) {
+    .roadmap {
+        padding: 0 10px;
+    }
+
     .milestone::before, .milestone:nth-child(2n+2)::before {
-        transform: translateY(-50%);
-        left: 0;
-        right: 0;
         margin: auto;
-        width: 8em;
+        left: 0 !important;
+        transform: translateY(-50%) !important;
+        right: 0 !important;
+        width: 8em !important;
     }
 
     .milestone, .milestone:nth-child(2n+2), .milestone.final {
         text-align: center;
+        padding: 1em 10px;
+    }
+
+    .milestone[reveal], .milestone:nth-child(2n+2)[reveal], .milestone.final[reveal] {
         padding: 2.5em 10px 1em;
     }
 }
