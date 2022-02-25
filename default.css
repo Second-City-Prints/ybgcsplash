@@ -71,7 +71,7 @@ body::before {
     z-index: 10;
 }
 
-h1, h2, h3, .milestone-title, .links a, #tracklist > div, .mbutton {
+h1, h2, h3, .milestone-title, .links a, .mbutton {
     text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
     font-family: OPTIFrankfurter;    
     text-transform: uppercase;
@@ -150,33 +150,13 @@ section {
         flex-basis: 100%;
     }
 }
-  
-#tracklist {
-    background: url(./img/clouds.jpg);
-    background-size: cover;
-    background-position: bottom;
-    padding: 10vh 0;
-    z-index: 2;
-}
-
-#tracklist::after {
-    content: "";
-    background: inherit;
-    background-position: top;
-    width: 200%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    z-index: -1;
-    animation: CLOUDDRIFT 60s cubic-bezier(.14,0,.86,.99) infinite alternate;
-}
 
 @keyframes CLOUDDRIFT {
     0% { transform: translateX(0) }
     100% { transform: translateX(-50%)}
 }
 
-#tracklist::before {
+#map::before {
     content: "";
     position: absolute;
     top: -5vh;
@@ -193,33 +173,13 @@ section {
     z-index: 2;
 }
 
-#map h2, #tracklist h2 {
+#map h2 {
     color: #e64836;
     margin: 0.5em auto;
 }
 
-#map h2, #tracklist h2, #tracklist > div {
+#map h2 {
     font-size: calc(2em + 1vw);
-}
-
-#tracklist > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    margin-top: 1em;
-    font-size: calc(1em + 0.5vw);
-    text-shadow: unset;
-}
-  
-#tracklist > div:last-child {
-  font-size: 1em;
-  margin-top: 2em;
-}
-
-#tracklist > div > span:not(span:last-child) {
-    margin-bottom: 1em;
 }
 
 #map {
@@ -248,15 +208,14 @@ section {
     align-items: center;
     text-align: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 90%;
     min-height: 150px;
     background: #e7dfc6;
     border: 2px dashed black;
     border-radius: 15px;
     padding: 1em 10px;
     margin-right: auto;
-    padding-right: 50px;
-    text-align: right;
+    text-align: center;
 }
 
 .milestone > *:empty {
@@ -295,15 +254,13 @@ section {
 
 .milestone::after {
     content: "";
-    width: 100%;
-    height: 100%;
-    min-height: 200px;
     position: absolute;
     bottom: 0;
-    right: 0;
-    transform: translate(75%, 75%);
+    width: 600px;
+    height: 25vh;
     background-image: url('./img/placeholdermap.png');
-    background-size: 100% 100%;
+    background-size: cover;
+    transform: translateY(90%);
     z-index: -1;
     pointer-events: none;
 }
@@ -312,50 +269,22 @@ section {
     margin-left: auto;
     margin-right: 0;
     padding-right: 10px;
-    padding-left: 50px;
-    text-align: left;
 }
 
-.milestone:nth-child(2n+2)::after {
-    right: unset;
-    left: 0;
-    transform: translate(-75%, 75%) rotateY(180deg);
+.milestone:nth-child(3n+2)::after {
     background-image: url('./img/placeholdermap2.png');
 }
+  
+.milestone:nth-child(3n+2)::after, .milestone:nth-child(3n+3)::after {
+    transform: translateY(90%) rotateY(180deg);
+}  
 
-.milestone:not(.milestone:first-child) {
-    margin-top: 2em;
+.milestone ~ .milestone {
+    margin-top: 22vh;
 }
 
 .milestone:last-child::after {
     opacity: 0;
-}
-
-.milestone[reveal]::before {
-    content: attr(reveal);
-    font-family: OPTIFrankfurter;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-    font-size: 1em;
-    background: inherit;
-    width: auto;
-    height: 1.5em;
-    padding: 0.25em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    overflow: hidden;
-    letter-spacing: 0;
-    border: 2px dotted;
-}
-
-.milestone:nth-child(2n+2)::before {
-    right: unset;
-    left: 0;
-    transform: translate(-50%, -50%);
 }
 
 .mbutton {
@@ -364,25 +293,8 @@ section {
 
 .milestone.final {
     width: 100%;
-    margin: auto;
-    text-align: center;
-    padding: 2.5em 10px 1em;
-    max-width: 800px;
-}
-
-.milestone.final::before {
-    transform: translateY(-50%);
-    left: 0;
-    right: 0;
-    width: 8em;
-    margin: auto;
-    font-size: 1.5em;
-}
-
-.milestone.final[reveal=""]::before {
-    display: none;
-}
-  
+    max-width: 100%;
+}  
 
 .milestone.covered {
     padding: 0;
@@ -398,21 +310,9 @@ section {
         padding: 0 10px;
     }
 
-    .milestone::before, .milestone:nth-child(2n+2)::before {
-        margin: auto;
-        left: 0 !important;
-        transform: translateY(-50%) !important;
-        right: 0 !important;
-        width: 8em !important;
-    }
-
     .milestone, .milestone:nth-child(2n+2), .milestone.final {
         text-align: center;
         padding: 1em 10px;
-    }
-
-    .milestone[reveal], .milestone:nth-child(2n+2)[reveal], .milestone.final[reveal] {
-        padding: 2.5em 10px 1em;
     }
 }
 
@@ -425,7 +325,7 @@ footer {
     min-height: 14vh;
     background: url(./img/bgnoboat.jpg);
     background-position: bottom;
-    box-shadow: 0px -15px 10px white, 0px 15px 10px white inset;
+    box-shadow: 0px -15px 10px #f0e8cd, 0px 15px 10px #f0e8cd inset;
     z-index: 2;
     position: relative;
 }

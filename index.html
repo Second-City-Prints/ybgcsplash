@@ -24,18 +24,7 @@
   <script src="https://kit.fontawesome.com/ff46203259.js" crossorigin="anonymous"></script>
 </head>
 
-<body>	
-  <section id="map">
-    <img src="./img/placeholdogo.png" alt="Groove Continental">
-    <h2>Side A</h2>
-    <div class="roadmap">
-      <div class="milestone final" epoch="1645926507000" reveal="">
-        <span class="milestone-title">Album Release</span>
-        <span class="milestone-body"><a href="" target="_blank" class="listen mbutton">Presave</a></span>
-      </div>
-    </div>
-  </section>
-
+<body>
   <section id="home">
     <img src="./img/placeholdogo.png" alt="Groove Continental">
     <div class="links">
@@ -51,9 +40,22 @@
     </div>
   </section>
 
-  <section id="tracklist">
-    <h2>TRACKLIST</h2>
-    <div></div>
+  <section id="map">
+    <img src="./img/placeholdogo.png" alt="Groove Continental">
+    <div class="roadmap">
+      <div class="milestone" epoch="1645926507000" reveal="">
+        <span class="milestone-title">Album Release</span>
+        <span class="milestone-body"><a href="" target="_blank" class="listen mbutton">Presave</a></span>
+      </div>
+      <div class="milestone" epoch="1645926507000" reveal="">
+        <span class="milestone-title">Album Release</span>
+        <span class="milestone-body"><a href="" target="_blank" class="listen mbutton">Presave</a></span>
+      </div>
+      <div class="milestone final" epoch="1645926507000" reveal="">
+        <span class="milestone-title">Album Release</span>
+        <span class="milestone-body"><a href="" target="_blank" class="listen mbutton">Presave</a></span>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -67,112 +69,5 @@
       </div>
       <a href="https://www.yungbae.com/" target="_blank">yungbae.com</a>
   </footer>
-
-  <script>
-    var intervals = []
-    function initialize(){
-      console.log('init')
-
-      //reinitialize
-      document.querySelectorAll('.milestone:not(.final)').forEach(e=> e.remove())
-      document.querySelector('#tracklist div').innerHTML = ""
-      intervals.forEach(interval => {
-        clearInterval(interval)
-      })
-      intervals = []
-
-      //get content
-      fetch('https://yungbaesplash.ksws.workers.dev/').then(res=> res.json().then(data => {
-        console.log(data)
-
-        //insert all milestones
-        var milestoneHTML = ""
-        data.milestones.forEach(milestone => {
-          if(milestone.revealTime) {
-            //
-            if(milestone.content) { //revealed
-              milestoneHTML += `
-                <div class="milestone">
-                  <span class="milestone-title">${milestone.title}</span>
-                  <span class="milestone-subtitle">${milestone.subtitle}</span>
-                  <div class="milestone-body">${milestone.content}</div>
-                </div>
-              `            
-            } else { //unrevealed but has timer
-              milestoneHTML += `
-                <div class="milestone covered" epoch="${milestone.revealTime}" reveal="">
-                  <span class="milestone-title">COMING SOON</span>
-                </div>
-              `            
-            }
-            //
-          } else { //empty
-              milestoneHTML += `
-                <div class="milestone covered">
-                  <span class="milestone-title">???</span>
-                </div>
-              `
-          }
-        })
-        document.querySelector('.roadmap').insertAdjacentHTML('afterbegin', milestoneHTML)
-
-        //insert tracklist, if there is any visible yet
-        if(data.tracklist) {
-          let tracklist = data.tracklist.split('\n')
-          tracklist.forEach(track => {
-            document.querySelector('#tracklist div').insertAdjacentHTML('afterbegin', `<span>${track}</span>`)
-          })
-          document.querySelector('#tracklist').style.display = 'flex'
-          document.querySelector('.tracklist-button').style.display = 'inline-block'
-        } else {
-          document.querySelector('#tracklist').style.display = 'none'
-          document.querySelector('.tracklist-button').style.display = 'none'
-        }
-
-        //add listen or presave buttons depending on whether the album's out or if presave is available      
-        document.querySelectorAll('.listen').forEach(e=>{
-          if(data.listen) {
-            e.href = data.listen
-            e.innerHTML = "LISTEN"
-            e.style.display = 'inline-block'
-          } else if(data.presave) {
-            e.href = data.presave
-            e.style.display = 'inline-block'
-          } else {
-            e.style.display = 'none'
-          }
-        })
-
-        //set up timers for milestones
-        document.querySelectorAll('.milestone[epoch]').forEach(e=>{
-          if(Date.now() < Number(e.getAttribute('epoch'))) {
-            function SCP_timer() {
-                let endtime = new Date(Number(e.getAttribute('epoch')))
-                let now = Date.now()
-
-                let diff = endtime - now;
-                if(diff <= 0) SCP_timerEnd()
-
-                let days = Math.floor(diff / (1000*60*60*24))
-                let hours = Math.floor(diff % (1000*60*60*24) / (1000*60*60))
-                let minutes = Math.floor(diff % (1000*60*60)/ (1000*60))
-                let seconds = Math.floor(diff % (1000*60) / 1000) 
-
-                e.setAttribute('reveal', `${String(days).padStart(2,'0')}:${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`)
-            }
-
-            function SCP_timerEnd() {
-                initialize()
-            }
-
-            SCP_timer()
-            intervals.push(setInterval(SCP_timer,1000))
-          }
-        })
-      }))
-    }
-  
-    initialize()
-  </script>
 </body>
 </html>
