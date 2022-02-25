@@ -314,6 +314,11 @@ section {
         text-align: center;
         padding: 1em 10px;
     }
+
+    .milestone::after {
+        width: 600px;
+        width: 375px;
+    }
 }
 
 footer {
