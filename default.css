@@ -356,7 +356,13 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     .milestone::after {
         width: 600px;
         width: 375px;
+        left: 0;
     }
+  
+    .milestone:nth-child(3n+2)::after, .milestone:nth-child(3n+3)::after {
+        right: 0;
+        left: unset;
+    }  
 }
 
 footer {
@@ -389,6 +395,10 @@ footer > a {
   
 
 /* pivot sections */
+#album {
+    max-width: 800px;
+}
+
 #album ol {
     list-style: numbered;
 }
