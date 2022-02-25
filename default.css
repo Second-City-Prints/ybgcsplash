@@ -399,12 +399,20 @@ footer > a {
     max-width: 800px;
 }
 
-#album ol {
-    list-style: numbered;
+#album li, #album ol {
+    text-align: left;
+    margin: 1em auto;
 }
 
-#album li, #album ol {
-    margin: 1em 0;
+#album ol {
+    list-style: numbered;
+    width: 80%;
+}
+
+strong {
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.2em;
 }
 
 #radioshow {
