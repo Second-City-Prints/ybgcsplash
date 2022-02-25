@@ -71,7 +71,7 @@ body::before {
     z-index: 10;
 }
 
-h1, h2, h3, .milestone-title, .links a, .mbutton {
+h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
     font-family: OPTIFrankfurter;    
     text-transform: uppercase;
@@ -89,6 +89,11 @@ section {
     padding: 0 5vw;
 }
 
+#home img, #map > img {
+    width: 600px;
+    max-width: 90vw;
+}  
+
 #home {
     background-image: url(./img/coverexpanded.jpg);
     background-size: cover;
@@ -104,32 +109,60 @@ section {
     margin-bottom: 5vh;
 }  
 
-.links a, .mbutton {
+.links a, .links span, .mbutton {
+    position: relative;
     padding: 10px;
     display: inline-block;
     border-radius: 10px;
     font-size: calc(0.75em + 1vw);
+    color: #ebefde;
     background: #f7df48;
     border: 1px solid rgba(0, 0, 0, 0.75);
     margin: 0.25em;
     letter-spacing: 2px;
 }
 
-.links .lowerlinks a, .mbutton {
+.links .lowerlinks a, .links .lowerlinks span, .mbutton {
     font-size: calc(0.75em + 0.5vw);
-    width: 16em;
+    width: 9em;
     background: #db5342;
     color: #f7f1dd;
 }
+
+.drop {
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+    top: 0;
+    transform: translateY(-100%);
+    transition: opacity 400ms ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.drop > a {
+    font-size: 16px;
+}
+
+.links span:hover .drop {
+    opacity: 1;
+    pointer-events: inherit;
+}
+
+/* default.css | file:///C:/Users/Work/Documents/GitHub/yungbaesplash/default.css */
+
+h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
+    position: relative;
+}
+  
 
 @media only screen and (max-width: 600px){ 
     .links {
         margin-bottom: 4vh;
     }
 
-    .links a {
+    .links a, .links span {
         font-size: 5vw;
-        color: #ebefde;
         flex-grow: 1;
     }
 
@@ -139,7 +172,7 @@ section {
         justify-content: center;
     }
 
-    .links .lowerlinks a {
+    .links .lowerlinks a, .links .lowerlinks span {
         font-size: 3vw;
         flex-grow: 1;
         flex-basis: 40%;
@@ -162,8 +195,8 @@ section {
     top: -5vh;
     left: 0;
     width: 100%;
-    height: calc(100% + 5vh);
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(155, 199, 206) 5%, rgba(177, 208, 213, 0) 7%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 99%, #d5d5d5 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(155, 199, 206) 5%, rgba(177, 208, 213, 0) 7%, rgba(255,255,255,0) 10%);
+    height: 100vh;
     z-index: 2;
     pointer-events: none;
 }
@@ -171,6 +204,10 @@ section {
 #map {
     box-shadow: 0px 15px 2em #eee6ce;
     z-index: 2;
+}
+
+#map > img {
+    margin: 5vh auto;
 }
 
 #map h2 {
@@ -238,6 +275,7 @@ section {
 
 .milestone-body {
     margin-top: 1em;
+    width: 100%;
 }
 
 .milestone:nth-child(3n+1) .milestone-title {
@@ -333,6 +371,7 @@ footer {
     box-shadow: 0px -15px 10px #f0e8cd, 0px 15px 10px #f0e8cd inset;
     z-index: 2;
     position: relative;
+    padding-top: 30px
 }
 
 footer > * {
@@ -348,3 +387,55 @@ footer > a {
     padding: 0 0.25em;
 }
   
+
+/* pivot sections */
+#album ol {
+    list-style: numbered;
+}
+
+#album li, #album ol {
+    margin: 1em 0;
+}
+
+#radioshow {
+    padding: 15px 0;
+}
+
+#radioshow p {
+    margin: 1em;
+    font-weight: 600;
+}
+
+#tour .milestone-body {
+    text-align: left;
+}
+  
+.seated-events-table > *:last-child {
+    display: none !important;
+}
+
+#videos {
+    width: 1000px;
+}
+
+#videos .video-wrapper {
+    margin: 1em 0;
+}
+  
+
+/* helpers */
+.video-wrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	width: 100%;
+}
+
+.video-wrapper iframe, .video-wrapper img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
