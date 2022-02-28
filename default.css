@@ -125,7 +125,7 @@ section {
 .links .lowerlinks a, .links .lowerlinks span, .mbutton {
     font-size: 16px;
     max-width: 100%;
-    width: 13em;
+    width: 10em;
     background: #db5342;
     color: #f7f1dd;
 }
