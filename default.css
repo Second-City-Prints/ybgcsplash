@@ -71,7 +71,7 @@ body::before {
     z-index: 10;
 }
 
-h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
+h1, h2, h3, .milestone-title, .links a, .links span, .mbutton, .milestone-subtitle {
     text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
     font-family: OPTIFrankfurter;    
     text-transform: uppercase;
@@ -114,7 +114,7 @@ section {
     padding: 10px;
     display: inline-block;
     border-radius: 10px;
-    font-size: calc(0.75em + 1vw);
+    font-size: calc(0.75em + 0.75vw);
     color: #ebefde;
     background: #f7df48;
     border: 1px solid rgba(0, 0, 0, 0.75);
@@ -124,7 +124,7 @@ section {
 
 .links .lowerlinks a, .links .lowerlinks span, .mbutton {
     font-size: calc(0.75em + 0.5vw);
-    width: 9em;
+    width: 13em;
     background: #db5342;
     color: #f7f1dd;
 }
@@ -134,6 +134,8 @@ section {
     flex-direction: column;
     display: flex;
     top: 0;
+    left: 0;
+    width: 100%;
     transform: translateY(-100%);
     transition: opacity 400ms ease-in-out;
     opacity: 0;
@@ -162,7 +164,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     }
 
     .links a, .links span {
-        font-size: 5vw;
+        font-size: 4vw;
         flex-grow: 1;
     }
 
@@ -173,14 +175,13 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     }
 
     .links .lowerlinks a, .links .lowerlinks span {
-        font-size: 3vw;
+        font-size: 2.5vw;
         flex-grow: 1;
         flex-basis: 40%;
-    }
-
-    .lowerlinks > a:nth-child(1) {
-        width: 100%;
-        flex-basis: 100%;
+        font-size: 2.5vw;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -259,7 +260,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     display: none;
 }
 
-.milestone-title {
+.milestone-title, .milestone-subtitle {
     font-size: calc(1em + 1vw);
     letter-spacing: 0.15em;
     width: 100%;
@@ -271,6 +272,8 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     width: 100%;
     margin-top: 0.5em;
     font-style: italic;
+    font-size: 1.2em;
+    color: #faa21c;
 }
 
 .milestone-body {
@@ -294,11 +297,11 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     content: "";
     position: absolute;
     bottom: 0;
-    width: 600px;
-    height: 25vh;
+    width: 100%;
+    height: 15vh;
     background-image: url('./img/placeholdermap.png');
     background-size: cover;
-    transform: translateY(90%);
+    transform: translateY(90%) translateX(50%);
     z-index: -1;
     pointer-events: none;
 }
@@ -314,11 +317,11 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
 }
   
 .milestone:nth-child(3n+2)::after, .milestone:nth-child(3n+3)::after {
-    transform: translateY(90%) rotateY(180deg);
+    transform: translateY(80%) rotateY(180deg) translateX(50%);
 }  
 
 .milestone ~ .milestone {
-    margin-top: 22vh;
+    margin-top: 10vh;
 }
 
 .milestone:last-child::after {
@@ -343,7 +346,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
 }
   
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
     .roadmap {
         padding: 0 10px;
     }
@@ -406,16 +409,23 @@ footer > a {
 
 #album ol {
     list-style: numbered;
-    width: 80%;
+    columns: 2;
+    width: 90%;
+}
+
+#album li {
+    margin-top: 0;
 }
 
 strong {
     font-weight: 600;
     font-style: italic;
-    font-size: 1.2em;
+    font-family: OPTIFrankfurter;
+    letter-spacing: 1px;
 }
 
 #radioshow {
+    width: 700px;
     padding: 15px 0;
 }
 
@@ -433,11 +443,28 @@ strong {
 }
 
 #videos {
-    width: 1000px;
+    width: 800px;
+}
+
+#videos .milestone-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#videos .milestone-body > div {
+    flex-basis: 50%;
+    padding: 10px;
 }
 
 #videos .video-wrapper {
     margin: 1em 0;
+}
+
+@media only screen and (max-width: 800px) {
+    #videos .milestone-body > div {
+        flex-basis: 100%;
+        padding: 5px;
+    }
 }
   
 
