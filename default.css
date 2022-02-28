@@ -123,7 +123,8 @@ section {
 }
 
 .links .lowerlinks a, .links .lowerlinks span, .mbutton {
-    font-size: calc(0.75em + 0.5vw);
+    font-size: 16px;
+    max-width: 100%;
     width: 13em;
     background: #db5342;
     color: #f7f1dd;
@@ -140,10 +141,13 @@ section {
     transition: opacity 400ms ease-in-out;
     opacity: 0;
     pointer-events: none;
+    padding-bottom: 10px;
 }
 
 .drop > a {
     font-size: 16px;
+    margin: 5px 0;
+    width: 100% !important;
 }
 
 .links span:hover .drop {
@@ -377,7 +381,7 @@ footer {
     min-height: 14vh;
     background: url(./img/bgnoboat.jpg);
     background-position: bottom;
-    box-shadow: 0px -15px 10px #f0e8cd, 0px 15px 10px #f0e8cd inset;
+    box-shadow: 0px -15px 10px #bcddec, 0px 15px 10px #bcddec inset;
     z-index: 2;
     position: relative;
     padding-top: 30px
