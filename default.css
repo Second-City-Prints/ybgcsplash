@@ -122,6 +122,11 @@ section {
     letter-spacing: 2px;
 }
 
+.upperlinks a {
+    font-size: 32px;
+    padding: 10px 30px;
+}
+
 .links .lowerlinks a, .links .lowerlinks span, .mbutton {
     font-size: 16px;
     max-width: 100%;
