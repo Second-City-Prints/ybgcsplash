@@ -301,7 +301,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     height: 15vh;
     background-image: url('./img/placeholdermap.png');
     background-size: cover;
-    transform: translateY(90%) translateX(50%);
+    transform: translateY(80%) translateX(50%);
     z-index: -1;
     pointer-events: none;
 }
