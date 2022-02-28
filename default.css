@@ -449,6 +449,7 @@ strong {
 #videos .milestone-body {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 #videos .milestone-body > div {
