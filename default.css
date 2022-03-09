@@ -214,7 +214,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     z-index: 2;
 }
 
-#map a.admat {
+.admat {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -222,7 +222,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     margin: 2.5vh auto 5vh;
 }
 
-#map img {
+.admat img {
     margin-bottom: 2.5vh;
     width: 700px;
 }
