@@ -214,7 +214,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     z-index: 2;
 }
 
-#map > a {
+#map a.admat {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -473,7 +473,7 @@ body .bit-venue {
 }
 
 .seated-events-table {
-    text-align: left;
+    text-align: left !important;
 }
 
 #videos {
