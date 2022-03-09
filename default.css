@@ -89,7 +89,7 @@ section {
     padding: 0 5vw;
 }
 
-#home img, #map > img {
+#home img, #map img {
     width: 600px;
     max-width: 90vw;
 }  
@@ -128,7 +128,7 @@ section {
 }
 
 .links .lowerlinks a, .links .lowerlinks span, .mbutton {
-    font-size: 16px;
+    font-size: 14px;
     max-width: 100%;
     width: 10em;
     background: #db5342;
@@ -159,8 +159,6 @@ section {
     opacity: 1;
     pointer-events: inherit;
 }
-
-/* default.css | file:///C:/Users/Work/Documents/GitHub/yungbaesplash/default.css */
 
 h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     position: relative;
@@ -205,19 +203,28 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     top: -5vh;
     left: 0;
     width: 100%;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(155, 199, 206) 5%, rgba(177, 208, 213, 0) 7%, rgba(255,255,255,0) 10%);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(155, 199, 206) 6%, rgba(177, 208, 213, 0) 10%, rgba(255,255,255,0) 10%);
     height: 100vh;
-    z-index: 2;
+    z-index: -1;
     pointer-events: none;
 }
 
 #map {
-    box-shadow: 0px 15px 2em #eee6ce;
+    box-shadow: 0px 25px 4vh #eee6ce;
     z-index: 2;
 }
 
-#map > img {
-    margin: 5vh auto;
+#map > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2.5vh auto 5vh;
+}
+
+#map img {
+    margin-bottom: 2.5vh;
+    width: 700px;
 }
 
 #map h2 {
@@ -232,7 +239,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
 #map {
     background: url(./img/papertex.jpg);
     justify-content: flex-start;
-    padding: 5vh 0;
+    padding: 7.5vh 0 5vh;
 }
   
 .roadmap {
@@ -386,23 +393,25 @@ footer {
     min-height: 14vh;
     background: url(./img/bgnoboat.jpg);
     background-position: bottom;
-    box-shadow: 0px -15px 10px #bcddec, 0px 15px 10px #bcddec inset;
-    z-index: 2;
+    z-index: 1;
     position: relative;
-    padding-top: 30px
+    padding: 60px 0 40px;
 }
 
-footer > * {
+footer img {
+    max-width: 75px;
+}
+
+footer > *:first-child {
     padding: 1vh 0;
 }
 
 footer > a {
-    margin-top: 0.25em;
     font-family: OPTIFrankfurter;
 }
 
 .socials a {
-    padding: 0 0.25em;
+    padding: 0 0.25em 0;
 }
   
 
@@ -444,12 +453,27 @@ strong {
     font-weight: 600;
 }
 
-#tour .milestone-body {
+body .bit-widget-container {
+    padding: 15px;
     text-align: left;
+}
+
+body .bit-venue {
+    font-weight: 400;
+}
+
+.seated-event-link1, .seated-follow-link {
+    background: #faa21b !important;
+    color: #333232 !important;
+    border: 1px solid #faa21b;
 }
   
 .seated-events-table > *:last-child {
     display: none !important;
+}
+
+.seated-events-table {
+    text-align: left;
 }
 
 #videos {
