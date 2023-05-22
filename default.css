@@ -525,3 +525,24 @@ body .bit-venue {
 	width: 100%;
 	height: 100%;
 }
+
+/* tentative layout updates - not sure if we'll keep these */
+#map img {
+    border-radius: 25px;
+}
+
+#map {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+#map > * {
+    flex-basis: 600px;
+}
+
+.admat {
+    margin: 20px;
+}
