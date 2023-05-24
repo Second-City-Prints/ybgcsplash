@@ -43,6 +43,8 @@ img {
 body {
     color: #3a3a3a;
     font-family: 'Didact Gothic', sans-serif;
+    background: url(./img/bodytex.webp);
+    background-size: 100% auto;
 }
 
 body::after, body::before {
@@ -95,9 +97,9 @@ section {
 }  
 
 #home {
-    background-image: url(./img/coverexpanded.jpg);
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
 #home img {
@@ -105,7 +107,6 @@ section {
 }
 
 .links {
-    margin-top: auto;
     margin-bottom: 5vh;
 }  
 
@@ -197,23 +198,6 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     100% { transform: translateX(-50%)}
 }
 
-#map::before {
-    content: "";
-    position: absolute;
-    top: -5vh;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(155, 199, 206) 6%, rgba(177, 208, 213, 0) 10%, rgba(255,255,255,0) 10%);
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-}
-
-#map {
-    box-shadow: 0px 25px 4vh #eee6ce;
-    z-index: 2;
-}
-
 .admat {
     display: flex;
     justify-content: center;
@@ -237,9 +221,23 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
 }
 
 #map {
-    background: url(./img/papertex.jpg);
     justify-content: flex-start;
     padding: 7.5vh 0 5vh;
+    z-index: 2;    
+    box-shadow: 0px 25px 4vh #eee6ce;
+    background: url(./img/papertex.jpg);
+}
+
+#map::before {
+    content: "";
+    position: absolute;
+    top: -5vh;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(217, 209, 187) 6%, rgba(177, 208, 213, 0) 10%, rgba(255,255,255,0) 10%);
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
 }
   
 .roadmap {
@@ -502,6 +500,14 @@ body .bit-venue {
     }
 }
   
+.video {
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+    max-height: 70vh;
+    border-radius: 25px;
+    overflow: hidden;
+}
 
 /* helpers */
 .video-wrapper {
@@ -518,4 +524,25 @@ body .bit-venue {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+/* tentative layout updates - not sure if we'll keep these */
+#map img {
+    border-radius: 25px;
+}
+
+#map {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+#map > * {
+    flex-basis: 600px;
+}
+
+.admat {
+    margin: 20px;
 }
