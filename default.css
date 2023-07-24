@@ -100,6 +100,8 @@ section {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    background: url(/img/awesometex.jpg?);
+    background-size: auto 100%;
 }
 
 #home img {
@@ -508,6 +510,17 @@ body .bit-venue {
     border-radius: 25px;
     overflow: hidden;
 }
+
+
+#home .video img {
+    margin: -7% auto;
+    width: 700px;
+}
+
+.video {
+    border-radius: unset;
+}
+  
 
 /* helpers */
 .video-wrapper {
