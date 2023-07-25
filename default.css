@@ -562,10 +562,16 @@ body .bit-venue {
 
 
 
-
+/* urgent urgent urgent */
 .scp_grid {
 max-width: 1250px;
 }
 .scp_item-details {
 color: #f7f1dd;
 }
+.scp_item:nth-child(6) ~ .scp_item {
+    display: none;
+    }
+    #merch .links {
+    margin-top: 5vh;
+    }
