@@ -565,15 +565,35 @@ body .bit-venue {
 
 
 /* super quick merch setup*/
-.scp_grid {
-    max-width: 1250px;
+body .scp_grid {
+    max-width: 100%;
+    width: 90vw;
 }
+
 .scp_item-details {
     color: #f7f1dd;
 }
+
 .scp_item:nth-child(6) ~ .scp_item {
     display: none;
 }
+
 #merch .links {
     margin-top: 5vh;
+}
+
+body .scp_item {
+    width: 25%;
+}
+
+@media only screen and (max-width: 800px) {				
+    body .scp_item {
+        flex-basis: 50%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body .scp_item {
+        flex-basis: 100%;
+    }				
 }
