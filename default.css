@@ -516,12 +516,7 @@ body .bit-venue {
 #home .video img {
     margin: -7% auto;
     width: 700px;
-}
-
-.video {
-    border-radius: unset;
-}
-  
+}  
 
 /* helpers */
 .video-wrapper {
