@@ -514,7 +514,9 @@ body .bit-venue {
 
 
 #home .video img {
-    margin: -7% auto;
+    margin: auto;
+    object-fit: contain;
+    height: 100%;
     width: 700px;
 }  
 
@@ -562,16 +564,16 @@ body .bit-venue {
 
 
 
-/* urgent urgent urgent */
+/* super quick merch setup*/
 .scp_grid {
-max-width: 1250px;
+    max-width: 1250px;
 }
 .scp_item-details {
-color: #f7f1dd;
+    color: #f7f1dd;
 }
 .scp_item:nth-child(6) ~ .scp_item {
     display: none;
-    }
-    #merch .links {
+}
+#merch .links {
     margin-top: 5vh;
-    }
+}
