@@ -126,7 +126,8 @@ section {
 }
 
 .upperlinks a {
-    font-size: 32px;
+    /* font-size: 32px; */
+    font-size: 16px;
     padding: 10px 30px;
 }
 
@@ -174,7 +175,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     }
 
     .links a, .links span {
-        font-size: 4vw;
+        font-size: /*4vw*/ 3vw;
         flex-grow: 1;
     }
 
