@@ -73,7 +73,7 @@ body::before {
     z-index: 10;
 }
 
-h1, h2, h3, .milestone-title, .links a, .links span, .mbutton, .milestone-subtitle {
+h1, h2, h3, .milestone-title, .links a, .links span, .mbutton, .milestone-subtitle, .scp_item-details {
     text-shadow: 1px 1px rgba(0, 0, 0, 0.75), -1px 1px rgba(0, 0, 0, 0.75), 1px -1px rgba(0, 0, 0, 0.75), -1px -1px rgba(0, 0, 0, 0.75);
     font-family: OPTIFrankfurter;    
     text-transform: uppercase;
@@ -214,16 +214,16 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     width: 700px;
 }
 
-#map h2 {
+#map h2, section h2 {
     color: #e64836;
     margin: 0.5em auto;
 }
 
-#map h2 {
+#map h2, section h2 {
     font-size: calc(2em + 1vw);
 }
 
-#map {
+#map, section ~ section {
     justify-content: flex-start;
     padding: 7.5vh 0 5vh;
     z-index: 2;    
@@ -231,7 +231,7 @@ h1, h2, h3, .milestone-title, .links a, .links span, .mbutton {
     background: url(./img/papertex.jpg);
 }
 
-#map::before {
+#map::before, section ~ section::before {
     content: "";
     position: absolute;
     top: -5vh;
@@ -554,4 +554,18 @@ body .bit-venue {
 
 .admat {
     margin: 20px;
+}
+
+
+
+
+
+
+
+
+.scp_grid {
+max-width: 1250px;
+}
+.scp_item-details {
+color: #f7f1dd;
 }
